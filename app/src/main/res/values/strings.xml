@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Recipe Book</string>
+    <string name="btn_add">Add a New Recipe</string>
+    <string name="tv_list_label">Select a Recipe:</string>
+    <string name="btn_save">Save Recipe</string>
+    <string name="a_recipe_title">Lorem ipsum dolor sit amet</string>
+    <string name="a_recipe_des">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elit est, accumsan nec mauris in, dignissim egestas mi. Maecenas dignissim turpis id libero ultrices, id efficitur nunc auctor. Aenean tristique quis diam non convallis. Duis sed vulputate nunc. Etiam posuere ligula pellentesque justo lobortis, at viverra dui consectetur. Aliquam nec nulla non lorem pellentesque porttitor. Integer pulvinar metus at venenatis pretium. Morbi maximus tristique mauris et finibus. Donec aliquam sapien at vehicula porta. Cras nec semper lorem.</string>
+    <string name="title_activity_crud">CrudActivity</string>
+    <string name="tv_desc_label">Instructions:</string>
+    <string name="tv_title_label">Recipe Title</string>
+</resources>
