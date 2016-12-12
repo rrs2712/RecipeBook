@@ -14,7 +14,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/lin_lay_save">
 
         <Button
             android:layout_width="match_parent"
@@ -28,14 +29,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="16dp">
+        android:id="@+id/lin_lay_update">
 
-        <ImageButton
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/bluegray"
-            android:src="@drawable/add"
-            android:onClick="onAddImgBtn"/>
+            android:layout_weight=".5"
+            android:text="@string/btn_delete"
+            android:id="@+id/btn_delete"
+            android:onClick="onDeleteBtn" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:text="@string/btn_update"
+            android:id="@+id/btn_update"
+            android:onClick="onUpdateBtn" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="16dp">
+
+        <!--<ImageButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/bluegray"-->
+            <!--android:src="@drawable/add"-->
+            <!--android:onClick="onAddImgBtn"/>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,13 +88,11 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/a_recipe_title"
+                    android:maxLength="99"
+                    android:inputType="text"
                     android:id="@+id/et_recipe_title"/>
             </LinearLayout>
         </LinearLayout>
-
-
-
 
     </LinearLayout>
 
@@ -96,7 +118,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/a_recipe_des"
+            android:maxLength="999"
+            android:inputType="text"
             android:id="@+id/et_recipe_desc"/>
     </LinearLayout>
 
