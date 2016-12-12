@@ -1,0 +1,15 @@
+
+SQLite affinity names and data types
+http://www.sqlite.org/datatype3.html
+
+Icons Sizes
+https://developer.android.com/guide/practices/ui_guidelines/icon_design_list.html
+
+Free icons
+http://findicons.com/search/add#ajax
+
+Image Button
+https://developer.android.com/reference/android/widget/ImageButton.html
+
+Lorem Ipsum
+http://es.lipsum.com/feed/html

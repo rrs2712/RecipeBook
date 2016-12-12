@@ -14,13 +14,15 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecipeDBAdapter dbAdapter;
     private SimpleCursorAdapter dataAdapter;
 
     private final String
         CLA = "RRS01 MainActivity",
-        NO_DATA_MSG = "Wow! Your recipe book is empty. \n\n Add a new recipe.",
-        TAG_ACTION = "actionToDo";
+        NO_DATA_MSG = "Wow! Your recipe book is empty. \n\n Add a new recipe.";
+
+    public static String
+        TAG_ACTION = "actionToDo",
+        ITEM_ID = "itemId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,35 +36,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.d(CLA,"onStart");
-
-        dbAdapter = new RecipeDBAdapter(this);
-        dbAdapter.open();
-
         setWidgets();
     }
 
     private void setWidgets() {
 
-
-        final Cursor cursor = dbAdapter.db.query(
-            RecipeDBAdapter.TABLE_NAME,
-            new String[]{
-                RecipeDBAdapter.KEY_ROWID,
-                RecipeDBAdapter.KEY_TITLE
-            },
-            null,null,null,null,null);
-
-        String[] columns = new String[]{
-            RecipeDBAdapter.KEY_ROWID,
-            RecipeDBAdapter.KEY_TITLE
+        String[] projection = new String[]{
+            MyProviderContract._ID,
+            MyProviderContract.TITLE
         };
 
-        int[] to = new int[]{
+        String[] colsToDisplay = new String[]{
+            MyProviderContract._ID,
+            MyProviderContract.TITLE
+        };
+
+        int[] colResIDs = new int[]{
             R.id.idView,
             R.id.titleView
         };
 
-        dataAdapter = new SimpleCursorAdapter(this, R.layout.db_item_layout,cursor, columns, to,0);
+        Cursor cursor = getContentResolver().query(MyProviderContract.RECIPE_URI,projection,null,null,null);
+
+        dataAdapter = new SimpleCursorAdapter(this, R.layout.db_item_layout,cursor, colsToDisplay, colResIDs,0);
 
         final ListView lv = (ListView) findViewById(R.id.lv_recipes);
         lv.setAdapter(dataAdapter);
@@ -72,20 +68,24 @@ public class MainActivity extends AppCompatActivity {
                                     View myView,
                                     int myItemInt,
                                     long mylng) {
-                //String itemSelected = (String) (lv.getItemAtPosition(myItemInt));
                 Cursor c1 = (Cursor) lv.getAdapter().getItem(myItemInt);
-                Log.d(CLA,"" + c1.getInt(0));
-
-
-                //Do something with each recipe here
-                //showRecipeDetails(itemSelected);
+                showRecipeDetails(c1.getInt(0));
             }
         });
 
     }
 
-    private void showRecipeDetails(String selectedFromList) {
-        Toast.makeText(this,selectedFromList,Toast.LENGTH_SHORT).show();
+    private void showRecipeDetails(int selectedItem) {
+        Log.d(CLA," Selected item: " + selectedItem);
+
+        Bundle b = new Bundle();
+        b.putInt(TAG_ACTION,2);
+        b.putInt(ITEM_ID,selectedItem);
+
+        Intent i = new Intent(MainActivity.this, CrudActivity.class);
+        i.putExtras(b);
+
+        startActivity(i);
     }
 
     public void onAddBtn(View view){
@@ -100,11 +100,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(CLA,"onStop");
-
-        dbAdapter.close();
-    }
 }

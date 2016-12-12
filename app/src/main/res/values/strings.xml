@@ -8,4 +8,6 @@
     <string name="title_activity_crud">CrudActivity</string>
     <string name="tv_desc_label">Instructions:</string>
     <string name="tv_title_label">Recipe Title</string>
+    <string name="btn_delete">Delete Recipe</string>
+    <string name="btn_update">Update Recipe</string>
 </resources>
